@@ -3,125 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로맨스 여주인공 테스트 - 나의 연애 스타일 찾기 💖</title>
-    <meta name="description" content="심리 테스트를 통해 당신이 어떤 로맨스 드라마의 여주인공인지 알아보세요. 나만의 연애 스타일과 행운의 아이템까지!">
+    <title>심쿵! 로맨스 주인공 테스트 💖</title>
+    <meta name="description" content="내가 드라마 속 주인공이라면? 소녀/소년 버전으로 즐기는 나만의 로맨틱 심리 테스트!">
     <meta name="google-adsense-account" content="ca-pub-3356525968669327">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356525968669327"
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-<body class="face-test-body">
-    <nav class="top-nav">
-        <a href="index.html" class="nav-link active">💖 로맨스 테스트</a>
-    </nav>
+<body class="cute-theme">
+    <div class="background-blobs">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
 
-    <div class="noise-overlay"></div>
-    
     <main class="container">
-        <!-- Start Screen -->
+        <!-- Gender Selection -->
         <div id="start-screen" class="screen-container">
             <header class="header">
-                <span class="badge">인기 심리 테스트</span>
-                <h1 class="title">나의 로맨스 여주 재질은? ✨</h1>
-                <p class="subtitle">수천 명의 데이터로 분석하는 <br>나만의 드라마틱한 연애 캐릭터 찾기</p>
+                <span class="cute-badge">몽글몽글 심리 테스트 ✨</span>
+                <h1 class="main-title">만약 내가 드라마 속<br>주인공이라면? 🎬</h1>
+                <p class="main-subtitle">당신의 숨겨진 로맨틱한 본능을<br>찾아가는 특별한 여정</p>
             </header>
             
-            <div class="hero-image">💑</div>
-            <button id="start-btn" class="generate-btn">테스트 시작하기! (무료) 💕</button>
-
-            <!-- 정보성 섹션 (AdSense 통과를 위한 텍스트 보강) -->
-            <section class="info-section">
-                <div class="info-card">
-                    <h3>🔍 테스트 안내</h3>
-                    <p>본 테스트는 연애 심리학적 요소를 기반으로 제작되었습니다. 평소 나의 습관과 선택을 통해 가장 잘 어울리는 드라마 장르와 여주인공 타입을 매칭해 드립니다.</p>
+            <div class="gender-choice">
+                <p class="choice-label">어떤 이야기를 시작할까요?</p>
+                <div class="choice-buttons">
+                    <button class="choice-btn female" onclick="startQuiz('female')">
+                        <span class="emoji">🎀</span>
+                        <span>소녀 버전</span>
+                        <small>여주인공 찾기</small>
+                    </button>
+                    <button class="choice-btn male" onclick="startQuiz('male')">
+                        <span class="emoji">🧢</span>
+                        <span>소년 버전</span>
+                        <small>남주인공 찾기</small>
+                    </button>
                 </div>
-                
-                <!-- 독창적 포인트: 오늘의 로맨스 행운 아이템 -->
-                <div class="info-card lucky-card">
-                    <h3>🍀 오늘의 로맨스 행운</h3>
-                    <div id="daily-lucky-item" class="lucky-item-box">
-                        <span class="loading-text">행운을 불러오는 중...</span>
-                    </div>
+            </div>
+
+            <section class="daily-bonus">
+                <h3>🍀 오늘의 로맨스 행운</h3>
+                <div id="daily-lucky-item" class="lucky-bubble">
+                    <p>당신의 행운을 불러오는 중...</p>
                 </div>
             </section>
         </div>
 
         <!-- Question Screen -->
         <div id="question-screen" class="screen-container hidden">
-            <div class="progress-info">
-                <span id="progress-text">1 / 4</span>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill"></div>
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <span id="progress-text">1 / 6</span>
                 </div>
             </div>
-            <h2 class="question-container">질문이 여기에 나옵니다.</h2>
-            <div class="answers-container"></div>
+            <h2 id="question-text" class="question-title">질문 로딩 중...</h2>
+            <div id="answers-container" class="bubble-answers"></div>
         </div>
 
         <!-- Result Screen -->
         <div id="result-screen" class="screen-container hidden">
-            <h3 id="result-subtitle" class="result-subtitle">부제</h3>
-            <h1 id="result-title" class="title">결과 제목</h1>
-            <div class="result-content-wrap">
-                <p id="result-desc" class="result-desc">결과 설명이 나옵니다.</p>
+            <div class="result-card">
+                <span id="result-tag" class="result-tag">당신은...</span>
+                <h3 id="result-subtitle" class="res-sub">부제</h3>
+                <h1 id="result-title" class="res-title">결과 제목</h1>
+                <div class="result-divider"></div>
+                <p id="result-desc" class="res-desc">상세 설명</p>
+                <div class="result-tip">
+                    <strong>💡 연애 팁:</strong>
+                    <span id="result-tip-text">팁 내용</span>
+                </div>
+                <button onclick="location.reload()" class="retry-bubble">다시 하기 🔄</button>
             </div>
-            <div class="share-box">
-                <p>결과가 마음에 드시나요? 친구들에게 공유해보세요!</p>
-            </div>
-            <button id="retry-btn" class="retry-btn">다시 하기 🔄</button>
         </div>
 
-        <!-- Disqus Section -->
-        <section class="comments-section">
-            <h2>커뮤니티 소통 💬</h2>
+        <!-- Community Section -->
+        <section class="comments-area">
+            <h3>우리의 설레는 이야기 💬</h3>
             <div id="disqus_thread"></div>
-            <script>
-                (function() {
-                var d = document, s = d.createElement('script');
-                s.src = 'https://productbuilder-uvrdbzn2ha.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-                })();
-            </script>
         </section>
     </main>
 
-    <!-- AdSense를 위한 푸터 (개인정보처리방침 등) -->
-    <footer class="site-footer">
-        <div class="footer-links">
-            <a href="#" onclick="alert('준비 중입니다.')">About Us</a> | 
-            <a href="#" onclick="alert('본 사이트는 쿠키를 사용하며 개인정보를 저장하지 않습니다.')">Privacy Policy</a> | 
-            <a href="#" id="contact-footer">Contact Us</a>
+    <footer class="cute-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" id="open-privacy">Privacy</a>
+                <a href="#" id="open-contact">Contact</a>
+            </div>
+            <p>© 2026 Romance Destiny. Made with 💖</p>
         </div>
-        <p>© 2026 Romance Heroine Test. All Rights Reserved.</p>
     </footer>
 
-    <div class="controls">
-        <button id="theme-toggle" class="theme-toggle" aria-label="테마 변경">
-            <svg id="theme-icon" viewBox="0 0 24 24"></svg>
-        </button>
-    </div>
-
-    <!-- Contact Modal (기존 유지) -->
+    <!-- Simplified Modal -->
     <div id="contact-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content cute-card">
             <span class="close-modal">&times;</span>
             <h2>🤝 제휴 및 문의</h2>
-            <form action="https://formspree.io/f/xdalpkbz" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="name">성함</label>
-                    <input type="text" id="name" name="name" required placeholder="성함을 입력해주세요">
-                </div>
-                <div class="form-group">
-                    <label for="email">이메일 주소</label>
-                    <input type="email" id="email" name="_replyto" required placeholder="답변받으실 이메일">
-                </div>
-                <div class="form-group">
-                    <label for="message">문의 내용</label>
-                    <textarea id="message" name="message" required placeholder="문의하실 내용을 자유롭게 적어주세요!"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">문의 보내기 🚀</button>
+            <form action="https://formspree.io/f/xdalpkbz" method="POST" class="cute-form">
+                <input type="email" name="email" required placeholder="답변받으실 이메일">
+                <textarea name="message" required placeholder="문의하실 내용을 자유롭게 적어주세요!"></textarea>
+                <button type="submit" class="submit-bubble">보내기 ✨</button>
             </form>
         </div>
     </div>
@@ -129,27 +113,12 @@
     <script src="theme.js"></script>
     <script src="quiz.js"></script>
     <script>
-        // 오늘의 행운 아이템 로직 (독창적 포인트)
-        document.addEventListener('DOMContentLoaded', () => {
-            const luckyItems = [
-                { item: "따뜻한 카페라떼 ☕", reason: "부드러운 분위기가 당신의 매력을 높여줄 거예요." },
-                { item: "반짝이는 헤어핀 ✨", reason: "작은 디테일이 상대방의 시선을 사로잡을 거예요." },
-                { item: "핑크빛 립밤 💄", reason: "생기 있는 입술이 행운의 대화를 불러옵니다." },
-                { item: "포근한 니트 🧶", reason: "편안한 모습이 사람들에게 신뢰감을 줍니다." },
-                { item: "좋아하는 플레이리스트 🎵", reason: "기분 좋은 에너지가 좋은 소식을 가져다줄 거예요." }
-            ];
-            const randomLucky = luckyItems[Math.floor(Math.random() * luckyItems.length)];
-            const luckyBox = document.getElementById('daily-lucky-item');
-            if(luckyBox) {
-                luckyBox.innerHTML = `<strong>${randomLucky.item}</strong><p>${randomLucky.reason}</p>`;
-            }
-            
-            // 푸터 문의 연결
-            document.getElementById('contact-footer').onclick = (e) => {
-                e.preventDefault();
-                document.getElementById('contact-modal').style.display = 'flex';
-            };
-        });
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://productbuilder-uvrdbzn2ha.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     </script>
 </body>
 </html>
