@@ -1,24 +1,46 @@
 
+:root {
+    --bg-color: #1a1a1a;
+    --container-bg: #2b2b2b;
+    --text-color: #fff;
+    --ball-bg: linear-gradient(145deg, #3a3a3a, #1a1a1a);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --accent-glow: rgba(111, 0, 255, 0.3);
+    --dot-color: #333;
+}
+
+body.light-mode {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --ball-bg: linear-gradient(145deg, #e0e0e0, #ffffff);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --accent-glow: rgba(111, 0, 255, 0.1);
+    --dot-color: #ccc;
+}
+
 body {
-    background-color: #1a1a1a;
-    color: #fff;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-image: radial-gradient(circle, #333 1px, transparent 1px);
+    background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
     background-size: 20px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
     text-align: center;
     padding: 2rem;
-    background-color: #2b2b2b;
+    background-color: var(--container-bg);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(111, 0, 255, 0.3);
+    box-shadow: 0 10px 30px var(--shadow-color), 0 0 15px var(--accent-glow);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .title {
@@ -44,10 +66,11 @@ body {
     align-items: center;
     font-size: 1.5rem;
     font-weight: 600;
-    background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 -4px 10px rgba(0, 0, 0, 0.5);
+    background: var(--ball-bg);
+    box-shadow: 0 5px 15px var(--shadow-color), inset 0 -4px 10px rgba(0, 0, 0, 0.5);
     animation: popIn 0.5s ease-out forwards;
     opacity: 0;
+    color: #fff; /* Ensure numbers are readable on colored balls */
 }
 
 .generate-btn {
@@ -66,6 +89,35 @@ body {
 .generate-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px rgba(111, 0, 255, 1);
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background: var(--container-bg);
+    border: 1px solid rgba(111, 0, 255, 0.3);
+    color: var(--text-color);
+    padding: 0.8rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
 }
 
 @keyframes popIn {
@@ -93,5 +145,11 @@ body {
     .generate-btn {
         padding: 0.8rem 1.5rem;
         font-size: 1rem;
+    }
+
+    .theme-toggle {
+        bottom: 1.5rem;
+        left: 1.5rem;
+        padding: 0.6rem;
     }
 }
