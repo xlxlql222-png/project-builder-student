@@ -1,23 +1,35 @@
-# 로또 번호 추출기 - Blueprint
+# Blueprint: Dog or Cat Face Classifier 🐶🐱
 
-## 개요
-사용자에게 행운의 로또 번호(1-45)를 제공하는 현대적이고 친근한 웹 애플리케이션입니다.
+## Overview
+This project is a fun, interactive web application that uses a Teachable Machine image model to classify whether a person's face resembles a dog (강아지상) or a cat (고양이상). Users can upload their photos to get an instant prediction with a modern and engaging UI.
 
-## 주요 기능
-- **로또 번호 생성:** 1부터 45 사이의 중복되지 않는 6개 번호를 생성합니다.
-- **다이내믹 디자인:** 번호 범위에 따라 공의 색상이 다르게 표시되며, 애니메이션 효과가 적용됩니다.
-- **테마 전환:** 다크 모드와 라이트 모드를 지원하며, 사용자의 설정은 브라우저에 저장됩니다.
-- **제휴 문의:** Formspree를 이용한 문의 폼이 모달 형태로 제공됩니다.
-- **커뮤니티 소통:** Disqus를 통합하여 사용자 간의 소통이 가능한 댓글 영역을 제공합니다.
-- **다국어 지원:** 한국어 UI를 통해 국내 사용자에게 친숙한 경험을 제공합니다.
+## Features
+- **Image Upload & Preview:** Users can easily upload their photos and see a preview before analysis.
+- **Teachable Machine Integration:** Leverages a pre-trained image classification model for accurate "Dog vs. Cat" face typing.
+- **Interactive Results:** Displays classification results with progress bars and fun emoji-based feedback.
+- **Modern & Responsive UI:** A sleek, mobile-friendly design with glassmorphism effects, vibrant gradients, and smooth animations.
+- **Dark/Light Mode:** Full support for theme switching to suit user preferences.
 
-## 기술 스택
-- **Frontend:** HTML5, CSS3, JavaScript (Vanilla JS)
-- **Fonts:** Noto Sans KR, Poppins
-- **Services:** Formspree (문의 폼), Disqus (댓글 시스템)
-- **Deployment:** GitHub
+## Design Specifications
+- **Typography:** Expressive fonts ('Noto Sans KR' and 'Poppins') for a premium feel.
+- **Color Palette:** A vibrant mix of purples (`#8b5cf6`), pinks (`#ec4899`), and blues for a modern tech aesthetic.
+- **Visual Effects:** Multi-layered drop shadows, subtle noise textures (via SVG filter), and glassmorphism.
+- **Animations:** Smooth transitions, spinners, and progress bar fills.
 
-## 최근 변경 사항
-- UI 전체 한국어 번역 및 친근한 문구로 수정.
-- Disqus 댓글 시스템 통합.
-- 디자인 고도화 (그라데이션 텍스트, 부드러운 레이아웃 등).
+## Implementation Details
+- **Tech Stack:** Vanilla HTML5, CSS3 (Modern Baseline), JavaScript (ES Modules), TensorFlow.js, Teachable Machine Image Library.
+- **Model Loading:** The application loads a Teachable Machine model from a provided URL.
+- **Image Processing:** Uses `FileReader` for local image preview and passes the `HTMLImageElement` directly to the model's `predict` method.
+
+## How to use your own model
+In `main.js`, update the `MODEL_URL` constant with your Teachable Machine export link:
+```javascript
+const MODEL_URL = "https://teachablemachine.withgoogle.com/models/YOUR_MODEL_ID/";
+```
+
+## Status: Complete ✅
+- [x] Modern UI Structure
+- [x] Responsive CSS Styling
+- [x] Image Upload & Preview Logic
+- [x] AI Model Integration & Prediction Display
+- [x] Theme Switching Support
