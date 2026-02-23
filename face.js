@@ -20,11 +20,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const modelURL = MODEL_URL + "model.json";
                 const metadataURL = MODEL_URL + "metadata.json";
-                // tmImage.load(modelURL, metadataURL) can take URLs
                 model = await tmImage.load(modelURL, metadataURL);
                 maxPredictions = model.getTotalClasses();
             } catch (e) {
-                console.error("AI 모델 로딩 에러 상세:", e);
+                console.error("AI 모델 로딩 에러:", e);
                 loader.innerHTML = `<div class="spinner"></div><p style="color: #ff4b4b;">AI 모델 로딩에 실패했습니다.<br>(${e.message})</p>`;
                 throw e;
             }
@@ -47,11 +46,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     imagePreview.classList.remove('hidden');
                     uploadPlaceholder.classList.add('hidden');
                     
-                    // Show Loader
                     loader.classList.remove('hidden');
                     resultContainer.classList.add('hidden');
 
-                    // Predict
                     await predict();
                 };
                 reader.readAsDataURL(file);
@@ -67,51 +64,46 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const prediction = await model.predict(imagePreview);
             
-            // Hide Loader, Show Results
             loader.classList.add('hidden');
             resultContainer.classList.remove('hidden');
             labelContainer.innerHTML = '';
+
+            // Sort predictions by probability
+            prediction.sort((a, b) => b.probability - a.probability);
             
-            // ... rest of the logic
+            const topResult = prediction[0].className.toLowerCase();
+            const topProb = (prediction[0].probability * 100).toFixed(0);
+
+            let finalMsg = "";
+            if (topResult.includes("dog") || topResult.includes("강아지")) {
+                finalMsg = `🐶 음! 이 친구는 ${topProb}% 확률로 강아지네요!`;
+            } else if (topResult.includes("cat") || topResult.includes("고양이")) {
+                finalMsg = `🐱 오호! 이 친구는 ${topProb}% 확률로 고양이예요!`;
+            } else {
+                finalMsg = `✨ 분석 결과: ${prediction[0].className} (${topProb}%)`;
+            }
+            
+            resultMessage.innerText = finalMsg;
+
+            prediction.forEach(p => {
+                const prob = (p.probability * 100).toFixed(0);
+                const className = p.className.replace("Dog", "강아지").replace("Cat", "고양이");
+                
+                const barWrap = document.createElement('div');
+                barWrap.className = 'prediction-item';
+                barWrap.innerHTML = `
+                    <div class="prediction-label"><span>${className}</span><span>${prob}%</span></div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: ${prob}%"></div>
+                    </div>
+                `;
+                labelContainer.appendChild(barWrap);
+            });
         } catch (e) {
             console.error("분석 중 에러:", e);
             loader.classList.add('hidden');
-            alert("이미지 분석 중 오류가 발생했습니다. 다른 사진으로 시도해 주세요.");
-            return;
+            alert("이미지 분석 중 오류가 발생했습니다. (자바스크립트 콘솔 확인 필요)");
         }
-
-        // Sort predictions by probability
-        const prediction = await model.predict(imagePreview); 
-        prediction.sort((a, b) => b.probability - a.probability);
-        
-        const topResult = prediction[0].className;
-        const topProb = (prediction[0].probability * 100).toFixed(0);
-
-        let finalMsg = "";
-        if (topResult.includes("Dog") || topResult.includes("강아지")) {
-            finalMsg = `🐶 당신은 귀염뽀짝 ${topProb}% 강아지상!`;
-        } else if (topResult.includes("Cat") || topResult.includes("고양이")) {
-            finalMsg = `🐱 당신은 도도한 ${topProb}% 고양이상!`;
-        } else {
-            finalMsg = `✨ 당신은 매력적인 ${topResult}상! (${topProb}%)`;
-        }
-        
-        resultMessage.innerText = finalMsg;
-
-        prediction.forEach(p => {
-            const prob = (p.probability * 100).toFixed(0);
-            const className = p.className.replace("Dog", "강아지").replace("Cat", "고양이");
-            
-            const barWrap = document.createElement('div');
-            barWrap.className = 'prediction-item';
-            barWrap.innerHTML = `
-                <div class="prediction-label"><span>${className}</span><span>${prob}%</span></div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" style="width: ${prob}%"></div>
-                </div>
-            `;
-            labelContainer.appendChild(barWrap);
-        });
     }
 
     if (retryBtn) {
