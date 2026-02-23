@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>심쿵! 로맨스 주인공 테스트 💖</title>
     <meta name="description" content="내가 드라마 속 주인공이라면? 소녀/소년 버전으로 즐기는 나만의 로맨틱 심리 테스트!">
     <meta name="google-adsense-account" content="ca-pub-3356525968669327">
@@ -17,44 +17,41 @@
         <div class="blob blob2"></div>
     </div>
 
-    <main class="container">
+    <!-- 모드 전환 플로팅 버튼 -->
+    <button id="view-mode-toggle" class="view-mode-toggle" aria-label="화면 모드 변경">
+        <span class="pc-icon">💻 PC 모드</span>
+        <span class="mobile-icon">📱 모바일 모드</span>
+    </button>
+
+    <main id="app-container" class="container">
         <!-- Start Screen -->
         <div id="start-screen" class="screen-container">
             <header class="header">
                 <div class="badge-wrapper">
-                    <span class="cute-badge">✨ 누적 참여 1만 명 돌파!</span>
+                    <span class="cute-badge">✨ 로맨틱 심리 테스트</span>
                 </div>
-                <h1 class="main-title">로맨스 드라마 속<br>나의 주인공 타입은? 🎬</h1>
-                <p class="main-subtitle">심리 분석을 통해 알아보는<br>당신의 숨겨진 매력 포인트!</p>
+                <h1 class="main-title">드라마 속 나의<br>주인공 타입은? 🎬</h1>
+                <p class="main-subtitle">당신만의 로맨틱한 매력을 분석해드려요!</p>
             </header>
 
-            <!-- 중앙 수직 가이드 섹션 -->
             <section class="guide-box">
-                <div class="guide-item">
-                    <span class="guide-icon">🌸</span>
-                    <p>내 연애 성향을 구체적인 상황으로 분석해요</p>
-                </div>
-                <div class="guide-item">
-                    <span class="guide-icon">💑</span>
-                    <p>소녀/소년 버전별로 최적화된 결과가 있어요</p>
-                </div>
+                <div class="guide-item"><span>🌸</span> 연애 성향 상황별 정밀 분석</div>
+                <div class="guide-item"><span>💑</span> 소년/소녀 맞춤형 결과 제공</div>
             </section>
             
             <div class="gender-choice">
-                <p class="choice-label">어떤 이야기의 주인공이 되고 싶나요?</p>
+                <p class="choice-label">어떤 이야기를 시작할까요?</p>
                 <div class="choice-column">
                     <button class="choice-btn female" onclick="startQuiz('female')">
                         <span class="emoji">🎀</span>
                         <div class="btn-text">
                             <strong>소녀 버전 (여주인공)</strong>
-                            <span>청순가련부터 시크도도까지</span>
                         </div>
                     </button>
                     <button class="choice-btn male" onclick="startQuiz('male')">
                         <span class="emoji">🧢</span>
                         <div class="btn-text">
                             <strong>소년 버전 (남주인공)</strong>
-                            <span>다정다감부터 직진남까지</span>
                         </div>
                     </button>
                 </div>
@@ -62,17 +59,15 @@
 
             <section class="daily-bonus">
                 <div class="lucky-card-header">
-                    <span class="sparkle">⭐</span>
-                    <h3>오늘의 로맨스 행운 아이템</h3>
-                    <span class="sparkle">⭐</span>
+                    <h3>🍀 오늘의 로맨스 행운 아이템</h3>
                 </div>
                 <div id="daily-lucky-item" class="lucky-bubble">
-                    <p>행운의 기운을 모으고 있어요...</p>
+                    <p>행운을 확인해보세요!</p>
                 </div>
             </section>
         </div>
 
-        <!-- Question Screen (Vertical Layout) -->
+        <!-- Question Screen -->
         <div id="question-screen" class="screen-container hidden">
             <div class="quiz-progress-wrapper">
                 <div class="progress-info">
@@ -89,18 +84,18 @@
         <!-- Result Screen -->
         <div id="result-screen" class="screen-container hidden">
             <div class="result-card">
-                <span class="result-tag">당신의 주인공 재질은...</span>
-                <h3 id="result-subtitle" class="res-sub">부제</h3>
+                <span class="result-tag">당신은...</span>
                 <h1 id="result-title" class="res-title">결과 제목</h1>
+                <h3 id="result-subtitle" class="res-sub">부제</h3>
                 <div class="result-divider"></div>
-                <div class="res-content">
-                    <p id="result-desc" class="res-desc">상세 설명</p>
-                </div>
+                <p id="result-desc" class="res-desc">상세 설명</p>
                 <div class="result-tip">
-                    <strong>💝 연애 성공 포인트</strong>
+                    <strong>💝 연애 팁</strong>
                     <p id="result-tip-text">팁 내용</p>
                 </div>
-                <button onclick="location.reload()" class="retry-bubble">테스트 다시 하기 🔄</button>
+                <div class="action-buttons">
+                    <button onclick="location.reload()" class="retry-bubble">다시 하기 🔄</button>
+                </div>
             </div>
         </div>
 
@@ -113,12 +108,18 @@
 
     <footer class="cute-footer">
         <div class="footer-links">
-            <a href="#" id="open-privacy">Privacy Policy</a>
+            <a href="#" id="open-privacy">Privacy</a>
             <span class="sep">|</span>
-            <a href="#" id="open-contact">Contact Us</a>
+            <a href="#" id="open-contact">Contact</a>
         </div>
         <p>© 2026 Romance Destiny. Made with 💖</p>
     </footer>
+
+    <div class="controls-overlay">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="테마 변경">
+            <svg id="theme-icon" viewBox="0 0 24 24"></svg>
+        </button>
+    </div>
 
     <!-- Contact Modal -->
     <div id="contact-modal" class="modal">
