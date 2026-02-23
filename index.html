@@ -9,7 +9,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356525968669327"
      crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="cute-theme">
     <div class="background-blobs">
@@ -18,86 +18,109 @@
     </div>
 
     <main class="container">
-        <!-- Gender Selection -->
+        <!-- Start Screen -->
         <div id="start-screen" class="screen-container">
             <header class="header">
-                <span class="cute-badge">몽글몽글 심리 테스트 ✨</span>
-                <h1 class="main-title">만약 내가 드라마 속<br>주인공이라면? 🎬</h1>
-                <p class="main-subtitle">당신의 숨겨진 로맨틱한 본능을<br>찾아가는 특별한 여정</p>
+                <div class="badge-wrapper">
+                    <span class="cute-badge">✨ 누적 참여 1만 명 돌파!</span>
+                </div>
+                <h1 class="main-title">로맨스 드라마 속<br>나의 주인공 타입은? 🎬</h1>
+                <p class="main-subtitle">심리 분석을 통해 알아보는<br>당신의 숨겨진 매력 포인트!</p>
             </header>
+
+            <!-- 중앙 수직 가이드 섹션 -->
+            <section class="guide-box">
+                <div class="guide-item">
+                    <span class="guide-icon">🌸</span>
+                    <p>내 연애 성향을 구체적인 상황으로 분석해요</p>
+                </div>
+                <div class="guide-item">
+                    <span class="guide-icon">💑</span>
+                    <p>소녀/소년 버전별로 최적화된 결과가 있어요</p>
+                </div>
+            </section>
             
             <div class="gender-choice">
-                <p class="choice-label">어떤 이야기를 시작할까요?</p>
-                <div class="choice-buttons">
+                <p class="choice-label">어떤 이야기의 주인공이 되고 싶나요?</p>
+                <div class="choice-column">
                     <button class="choice-btn female" onclick="startQuiz('female')">
                         <span class="emoji">🎀</span>
-                        <span>소녀 버전</span>
-                        <small>여주인공 찾기</small>
+                        <div class="btn-text">
+                            <strong>소녀 버전 (여주인공)</strong>
+                            <span>청순가련부터 시크도도까지</span>
+                        </div>
                     </button>
                     <button class="choice-btn male" onclick="startQuiz('male')">
                         <span class="emoji">🧢</span>
-                        <span>소년 버전</span>
-                        <small>남주인공 찾기</small>
+                        <div class="btn-text">
+                            <strong>소년 버전 (남주인공)</strong>
+                            <span>다정다감부터 직진남까지</span>
+                        </div>
                     </button>
                 </div>
             </div>
 
             <section class="daily-bonus">
-                <h3>🍀 오늘의 로맨스 행운</h3>
+                <div class="lucky-card-header">
+                    <span class="sparkle">⭐</span>
+                    <h3>오늘의 로맨스 행운 아이템</h3>
+                    <span class="sparkle">⭐</span>
+                </div>
                 <div id="daily-lucky-item" class="lucky-bubble">
-                    <p>당신의 행운을 불러오는 중...</p>
+                    <p>행운의 기운을 모으고 있어요...</p>
                 </div>
             </section>
         </div>
 
-        <!-- Question Screen -->
+        <!-- Question Screen (Vertical Layout) -->
         <div id="question-screen" class="screen-container hidden">
-            <div class="quiz-header">
-                <div class="progress-container">
+            <div class="quiz-progress-wrapper">
+                <div class="progress-info">
+                    <span id="progress-text">1 / 6</span>
                     <div class="progress-bar">
                         <div class="progress-fill"></div>
                     </div>
-                    <span id="progress-text">1 / 6</span>
                 </div>
             </div>
             <h2 id="question-text" class="question-title">질문 로딩 중...</h2>
-            <div id="answers-container" class="bubble-answers"></div>
+            <div id="answers-container" class="bubble-answers-column"></div>
         </div>
 
         <!-- Result Screen -->
         <div id="result-screen" class="screen-container hidden">
             <div class="result-card">
-                <span id="result-tag" class="result-tag">당신은...</span>
+                <span class="result-tag">당신의 주인공 재질은...</span>
                 <h3 id="result-subtitle" class="res-sub">부제</h3>
                 <h1 id="result-title" class="res-title">결과 제목</h1>
                 <div class="result-divider"></div>
-                <p id="result-desc" class="res-desc">상세 설명</p>
-                <div class="result-tip">
-                    <strong>💡 연애 팁:</strong>
-                    <span id="result-tip-text">팁 내용</span>
+                <div class="res-content">
+                    <p id="result-desc" class="res-desc">상세 설명</p>
                 </div>
-                <button onclick="location.reload()" class="retry-bubble">다시 하기 🔄</button>
+                <div class="result-tip">
+                    <strong>💝 연애 성공 포인트</strong>
+                    <p id="result-tip-text">팁 내용</p>
+                </div>
+                <button onclick="location.reload()" class="retry-bubble">테스트 다시 하기 🔄</button>
             </div>
         </div>
 
         <!-- Community Section -->
         <section class="comments-area">
-            <h3>우리의 설레는 이야기 💬</h3>
+            <h3>방명록 & 소통 💬</h3>
             <div id="disqus_thread"></div>
         </section>
     </main>
 
     <footer class="cute-footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#" id="open-privacy">Privacy</a>
-                <a href="#" id="open-contact">Contact</a>
-            </div>
-            <p>© 2026 Romance Destiny. Made with 💖</p>
+        <div class="footer-links">
+            <a href="#" id="open-privacy">Privacy Policy</a>
+            <span class="sep">|</span>
+            <a href="#" id="open-contact">Contact Us</a>
         </div>
+        <p>© 2026 Romance Destiny. Made with 💖</p>
     </footer>
 
-    <!-- Simplified Modal -->
+    <!-- Contact Modal -->
     <div id="contact-modal" class="modal">
         <div class="modal-content cute-card">
             <span class="close-modal">&times;</span>
