@@ -4,6 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const lottoNumbersContainer = document.getElementById('lotto-numbers');
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
+    const contactToggle = document.getElementById('contact-toggle');
+    const contactModal = document.getElementById('contact-modal');
+    const closeModal = document.querySelector('.close-modal');
+
+    // Modal logic
+    contactToggle.addEventListener('click', () => {
+        contactModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => {
+        contactModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === contactModal) {
+            contactModal.style.display = 'none';
+        }
+    });
 
     // Theme logic
     const currentTheme = localStorage.getItem('theme') || 'dark';

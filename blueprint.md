@@ -1,33 +1,22 @@
-# Lotto Number Generator
+# Lotto Number Generator - Blueprint
 
 ## Overview
+A modern, responsive web application for generating random lotto numbers (1-45). Features a sleek UI with light/dark mode support and a partnership inquiry system.
 
-A modern and interactive web application to generate lottery numbers. The UI is designed to be visually appealing to a young adult audience (20s-30s) with a sleek, dark theme, animations, and a clean interface.
+## Features
+- **Lotto Generation:** Generates 6 unique numbers between 1 and 45.
+- **Dynamic Styling:** Lotto balls are color-coded based on their number range.
+- **Theme Toggle:** Switch between dark (default) and light modes. Preference is saved in `localStorage`.
+- **Partnership Inquiry:** A floating button opens a modal with a contact form powered by Formspree.
+- **Responsive Design:** Optimized for mobile and desktop screens.
 
-## Design and Features
+## Technical Details
+- **Frontend:** Vanilla HTML, CSS, and JavaScript.
+- **Styling:** CSS Variables, Flexbox, Animations, and Backdrop-filter.
+- **Data Persistence:** `localStorage` for theme preference.
+- **Form Handling:** Formspree integration for serverless form submissions.
 
-### Style & Design
-*   **Theme:** Dark mode with neon accents and gradients.
-*   **Typography:** Modern, sans-serif font (e.g., 'Poppins' from Google Fonts).
-*   **Layout:** Centered, responsive layout using Flexbox.
-*   **Animations:**
-    *   Numbers will animate in one by one.
-    *   The "Generate" button will have an interactive hover effect.
-*   **Visuals:**
-    *   Lottery numbers will be displayed in styled "balls".
-    *   A subtle background texture will be used.
-    *   Glow and shadow effects will be used to create depth.
-
-### Features
-*   **Number Generation:** Generates 6 unique random numbers between 1 and 45.
-*   **Interactive Button:** A clear call-to-action button to generate the numbers.
-*   **Responsive Design:** The application will be fully responsive and work on both desktop and mobile devices.
-
-## Current Plan
-
-**Request:** Create a lottery number drawing site with a UI that will capture the 20s-30s generation.
-
-**Steps:**
-1.  **`index.html`:** Set up the basic HTML structure with a title, a container for the lottery numbers, and a "Generate" button.
-2.  **`style.css`:** Implement the dark theme, responsive layout, and styling for the lottery balls and button. Add animations.
-3.  **`main.js`:** Write the JavaScript logic for generating unique random numbers and displaying them with an animation effect.
+## Recent Changes
+- Added light/dark mode toggle with icon updates.
+- Implemented a partnership inquiry modal with a Formspree-powered contact form.
+- Updated UI with a floating contact toggle button in the bottom-right.
