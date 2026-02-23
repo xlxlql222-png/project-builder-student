@@ -18,13 +18,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function loadModel() {
         if (!model) {
             try {
-                const modelURL = MODEL_URL + "model.json";
-                const metadataURL = MODEL_URL + "metadata.json";
-                model = await tmImage.load(modelURL, metadataURL);
+                // tmImage.load can take the base URL directly or separate URLs
+                model = await tmImage.load(MODEL_URL + "model.json", MODEL_URL + "metadata.json");
                 maxPredictions = model.getTotalClasses();
             } catch (e) {
                 console.error("AI 모델 로딩 에러:", e);
-                loader.innerHTML = `<div class="spinner"></div><p style="color: #ff4b4b;">AI 모델 로딩에 실패했습니다.<br>(${e.message})</p>`;
+                loader.innerHTML = `<div class="spinner"></div><p style="color: #ff4b4b;">AI 모델 로딩 실패!<br>(${e.message})</p>`;
                 throw e;
             }
         }
@@ -37,19 +36,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Handle Image Selection
     if (imageUpload) {
-        imageUpload.onchange = async (e) => {
+        imageUpload.onchange = (e) => {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = async (event) => {
+                reader.onload = (event) => {
                     imagePreview.src = event.target.result;
-                    imagePreview.classList.remove('hidden');
-                    uploadPlaceholder.classList.add('hidden');
                     
-                    loader.classList.remove('hidden');
-                    resultContainer.classList.add('hidden');
-
-                    await predict();
+                    // Wait for image to load fully before predicting
+                    imagePreview.onload = async () => {
+                        imagePreview.classList.remove('hidden');
+                        uploadPlaceholder.classList.add('hidden');
+                        loader.classList.remove('hidden');
+                        resultContainer.classList.add('hidden');
+                        await predict();
+                    };
                 };
                 reader.readAsDataURL(file);
             }
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             await loadModel();
             if (!model) return;
 
+            // model.predict can take an image, video, or canvas
             const prediction = await model.predict(imagePreview);
             
             loader.classList.add('hidden');
@@ -76,9 +78,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             let finalMsg = "";
             if (topResult.includes("dog") || topResult.includes("강아지")) {
-                finalMsg = `🐶 음! 이 친구는 ${topProb}% 확률로 강아지네요!`;
+                finalMsg = `🐶 이 친구는 ${topProb}% 확률로 강아지네요!`;
             } else if (topResult.includes("cat") || topResult.includes("고양이")) {
-                finalMsg = `🐱 오호! 이 친구는 ${topProb}% 확률로 고양이예요!`;
+                finalMsg = `🐱 이 친구는 ${topProb}% 확률로 고양이예요!`;
             } else {
                 finalMsg = `✨ 분석 결과: ${prediction[0].className} (${topProb}%)`;
             }
@@ -100,9 +102,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 labelContainer.appendChild(barWrap);
             });
         } catch (e) {
-            console.error("분석 중 에러:", e);
+            console.error("분석 에러 상세:", e);
             loader.classList.add('hidden');
-            alert("이미지 분석 중 오류가 발생했습니다. (자바스크립트 콘솔 확인 필요)");
+            alert(`이미지 분석 중 오류가 발생했습니다.\n에러 내용: ${e.message}`);
         }
     }
 
