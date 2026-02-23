@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             q: "주말 오후, 짝남에게 '심심해'라고 카톡이 왔다! 나의 반응은?",
             a: [
-                { text: "바로 전화 건다! "심심해? 나랑 놀자!" 📞", type: "E" },
-                { text: "설레서 침대 팡팡 치다가... "나도 심심해ㅎㅎ" 답장", type: "I" }
+                { text: "바로 전화 건다! \"심심해? 나랑 놀자!\" 📞", type: "E" },
+                { text: "설레서 침대 팡팡 치다가... \"나도 심심해ㅎㅎ\" 답장", type: "I" }
             ]
         },
         {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             q: "썸남이 우울해 보인다. 어떻게 위로해줄까?",
             a: [
-                { text: ""누가 그랬어! 내가 혼내줄게!" 맛집 데려가기 🍖", type: "T" },
+                { text: "\"누가 그랬어! 내가 혼내줄게!\" 맛집 데려가기 🍖", type: "T" },
                 { text: "조용히 이야기를 들어주며 공감해준다. 🥺", type: "F" }
             ]
         }
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let currentQuestion = 0;
-    let score = { "E": 0, "I": 0, "T": 0, "F": 0, "S": 0 }; // S는 더미(스타일용)
+    let score = { "E": 0, "I": 0, "T": 0, "F": 0, "S": 0 };
 
     // 시작하기
     if(startBtn) {
@@ -76,13 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showQuestion() {
+        if (!questions[currentQuestion]) return;
         const q = questions[currentQuestion];
         questionContainer.innerText = q.q;
         answersContainer.innerHTML = '';
         
         // 진행바 업데이트
         const progress = ((currentQuestion + 1) / questions.length) * 100;
-        progressBar.style.width = `${progress}%`;
+        if (progressBar) progressBar.style.width = `${progress}%`;
 
         q.a.forEach(answer => {
             const btn = document.createElement('button');
@@ -109,19 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
         questionScreen.classList.add('hidden');
         resultScreen.classList.remove('hidden');
 
-        // MBTI 간소화 로직 (E vs I, T vs F)
         const type1 = score.E >= score.I ? "E" : "I";
-        const type2 = score.T >= score.F ? "T" : "F"; // S는 문항이 적어서 제외하고 T/F로 대체하거나 단순화
+        const type2 = score.T >= score.F ? "T" : "F";
         
-        // 3번 문제(S/F)가 섞여있으므로 단순화: 
-        // 1,2번 문제로 E/I 결정
-        // 4번 문제로 T/F 결정
-        // 3번은 재미 요소
-        
-        // 최종 키 조합
         let finalKey = type1 + type2; 
-        
-        // 예외 처리 (데이터가 없을 경우 기본값)
         if (!results[finalKey]) finalKey = "EF";
 
         const result = results[finalKey];
@@ -131,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('result-desc').innerHTML = result.desc;
     }
 
-    // 다시하기
     const retryBtn = document.getElementById('retry-btn');
     if(retryBtn) {
         retryBtn.addEventListener('click', () => {

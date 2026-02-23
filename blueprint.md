@@ -1,35 +1,22 @@
-# Blueprint: Dog or Cat Face Classifier 🐶🐱
+# 로맨스 여주인공 테스트 - Blueprint
 
-## Overview
-This project is a fun, interactive web application that uses a Teachable Machine image model to classify whether a person's face resembles a dog (강아지상) or a cat (고양이상). Users can upload their photos to get an instant prediction with a modern and engaging UI.
+## 개요
+10-20대 여성을 타겟으로 한 "나의 로맨스 드라마 여주인공 재질 테스트" 웹 애플리케이션입니다. 간단한 심리 테스트를 통해 자신의 로맨스 드라마 캐릭터 타입을 확인할 수 있습니다.
 
-## Features
-- **Image Upload & Preview:** Users can easily upload their photos and see a preview before analysis.
-- **Teachable Machine Integration:** Leverages a pre-trained image classification model for accurate "Dog vs. Cat" face typing.
-- **Interactive Results:** Displays classification results with progress bars and fun emoji-based feedback.
-- **Modern & Responsive UI:** A sleek, mobile-friendly design with glassmorphism effects, vibrant gradients, and smooth animations.
-- **Dark/Light Mode:** Full support for theme switching to suit user preferences.
+## 주요 기능
+- **심리 테스트:** 연애와 관련된 재미있는 질문들을 통해 사용자의 성향을 분석합니다.
+- **결과 분석:** '하이틴 로코퀸', '차도녀 본부장', '청순가련 첫사랑' 등 4가지 타입의 결과를 제공합니다.
+- **테마 전환:** 다크 모드와 라이트 모드를 지원합니다.
+- **제휴 문의:** Formspree를 이용한 문의 폼이 모달 형태로 제공됩니다.
+- **커뮤니티 소통:** Disqus를 통합하여 사용자 간의 소통이 가능한 댓글 영역을 제공합니다.
 
-## Design Specifications
-- **Typography:** Expressive fonts ('Noto Sans KR' and 'Poppins') for a premium feel.
-- **Color Palette:** A vibrant mix of purples (`#8b5cf6`), pinks (`#ec4899`), and blues for a modern tech aesthetic.
-- **Visual Effects:** Multi-layered drop shadows, subtle noise textures (via SVG filter), and glassmorphism.
-- **Animations:** Smooth transitions, spinners, and progress bar fills.
+## 기술 스택
+- **Frontend:** HTML5, CSS3, JavaScript (Vanilla JS)
+- **Fonts:** Noto Sans KR, Poppins
+- **Services:** Formspree (문의 폼), Disqus (댓글 시스템)
+- **Deployment:** GitHub
 
-## Implementation Details
-- **Tech Stack:** Vanilla HTML5, CSS3 (Modern Baseline), JavaScript (ES Modules), TensorFlow.js, Teachable Machine Image Library.
-- **Model Loading:** The application loads a Teachable Machine model from a provided URL.
-- **Image Processing:** Uses `FileReader` for local image preview and passes the `HTMLImageElement` directly to the model's `predict` method.
-
-## How to use your own model
-In `main.js`, update the `MODEL_URL` constant with your Teachable Machine export link:
-```javascript
-const MODEL_URL = "https://teachablemachine.withgoogle.com/models/YOUR_MODEL_ID/";
-```
-
-## Status: Complete ✅
-- [x] Modern UI Structure
-- [x] Responsive CSS Styling
-- [x] Image Upload & Preview Logic
-- [x] AI Model Integration & Prediction Display
-- [x] Theme Switching Support
+## 최근 변경 사항
+- 로또 번호 생성기 기능 및 관련 코드 전면 제거.
+- 로맨스 테스트 '시작하기' 버튼 버그 수정 (JS 문법 오류 해결).
+- 네비게이션 바 메뉴 단일화 (로맨스 테스트 전용).
