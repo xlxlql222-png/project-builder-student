@@ -3,48 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강아지 vs 고양이 상 테스트 🐶🐱</title>
+    <title>로맨스 여주인공 테스트 💖</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body class="face-test-body">
     <nav class="top-nav">
-        <a href="index.html" class="nav-link active">🐶 멍냥상 테스트</a>
+        <a href="index.html" class="nav-link active">💖 로맨스 테스트</a>
         <a href="lotto.html" class="nav-link">🍀 로또 번호 뽑기</a>
     </nav>
 
     <div class="noise-overlay"></div>
     <main class="container">
-        <header class="header">
-            <h1 class="title">강아지? 고양이? 🐾</h1>
-            <p class="subtitle">인공지능이 분석하는 멍냥이 판별기!</p>
-        </header>
+        
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen-container">
+            <header class="header">
+                <h1 class="title">나의 로맨스 여주 재질은? ✨</h1>
+                <p class="subtitle">나는 어떤 드라마의 주인공일까? <br>지금 바로 확인해보세요!</p>
+            </header>
+            <div class="hero-image">💑</div>
+            <button id="start-btn" class="generate-btn">테스트 시작하기! 💕</button>
+        </div>
 
-        <section class="upload-section">
-            <div id="upload-area" class="upload-area">
-                <input type="file" id="image-upload" accept="image/*" hidden>
-                <div class="upload-placeholder">
-                    <div class="upload-icon">🐶🐱</div>
-                    <p>강아지나 고양이 사진을 업로드하세요!<br>(이미지 클릭 또는 드래그)</p>
-                    <span class="upload-hint">귀여운 멍냥이 사진일수록 정확합니다!</span>
-                </div>
-                <img id="image-preview" src="#" alt="Preview" class="hidden">
+        <!-- Question Screen -->
+        <div id="question-screen" class="screen-container hidden">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 25%"></div>
             </div>
-            
-            <div id="loader" class="loader-container hidden">
-                <div class="spinner"></div>
-                <p>AI가 분석 중입니다...</p>
+            <h2 class="question-container">질문이 여기에 나옵니다.</h2>
+            <div class="answers-container">
+                <!-- 버튼들이 생성됩니다 -->
             </div>
+        </div>
 
-            <div id="result-container" class="result-container hidden">
-                <h2 id="result-message" class="result-message">결과 분석 중...</h2>
-                <div id="label-container" class="label-container"></div>
-                <button id="retry-btn" class="retry-btn">다시 시도하기 🔄</button>
-            </div>
-        </section>
+        <!-- Result Screen -->
+        <div id="result-screen" class="screen-container hidden">
+            <h3 id="result-subtitle" class="result-subtitle">부제</h3>
+            <h1 id="result-title" class="title">결과 제목</h1>
+            <p id="result-desc" class="result-desc">결과 설명이 나옵니다.</p>
+            <button id="retry-btn" class="retry-btn">다시 하기 🔄</button>
+        </div>
 
+        <!-- Disqus Section -->
         <div class="comments-section">
             <div id="disqus_thread"></div>
             <script>
@@ -90,6 +91,6 @@
     </div>
 
     <script src="theme.js"></script>
-    <script src="face.js"></script>
+    <script src="quiz.js"></script> <!-- 심리 테스트 JS로 교체 -->
 </body>
 </html>
