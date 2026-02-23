@@ -22,12 +22,13 @@ body.light-mode {
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 2rem 1rem;
     background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
     background-size: 20px 20px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -35,19 +36,37 @@ body {
 
 .container {
     text-align: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
     background-color: var(--container-bg);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color), 0 0 15px var(--accent-glow);
+    border-radius: 30px;
+    box-shadow: 0 15px 40px var(--shadow-color), 0 0 20px var(--accent-glow);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 800px;
 }
 
 .title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    text-shadow: 0 0 10px rgba(111, 0, 255, 0.7);
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #6f00ff, #c300ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin-bottom: 2.5rem;
+}
+
+.comments-section {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(111, 0, 255, 0.2);
+    text-align: left;
 }
 
 .lotto-numbers {

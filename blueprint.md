@@ -1,22 +1,23 @@
-# Lotto Number Generator - Blueprint
+# 로또 번호 추출기 - Blueprint
 
-## Overview
-A modern, responsive web application for generating random lotto numbers (1-45). Features a sleek UI with light/dark mode support and a partnership inquiry system.
+## 개요
+사용자에게 행운의 로또 번호(1-45)를 제공하는 현대적이고 친근한 웹 애플리케이션입니다.
 
-## Features
-- **Lotto Generation:** Generates 6 unique numbers between 1 and 45.
-- **Dynamic Styling:** Lotto balls are color-coded based on their number range.
-- **Theme Toggle:** Switch between dark (default) and light modes. Preference is saved in `localStorage`.
-- **Partnership Inquiry:** A floating button opens a modal with a contact form powered by Formspree.
-- **Responsive Design:** Optimized for mobile and desktop screens.
+## 주요 기능
+- **로또 번호 생성:** 1부터 45 사이의 중복되지 않는 6개 번호를 생성합니다.
+- **다이내믹 디자인:** 번호 범위에 따라 공의 색상이 다르게 표시되며, 애니메이션 효과가 적용됩니다.
+- **테마 전환:** 다크 모드와 라이트 모드를 지원하며, 사용자의 설정은 브라우저에 저장됩니다.
+- **제휴 문의:** Formspree를 이용한 문의 폼이 모달 형태로 제공됩니다.
+- **커뮤니티 소통:** Disqus를 통합하여 사용자 간의 소통이 가능한 댓글 영역을 제공합니다.
+- **다국어 지원:** 한국어 UI를 통해 국내 사용자에게 친숙한 경험을 제공합니다.
 
-## Technical Details
-- **Frontend:** Vanilla HTML, CSS, and JavaScript.
-- **Styling:** CSS Variables, Flexbox, Animations, and Backdrop-filter.
-- **Data Persistence:** `localStorage` for theme preference.
-- **Form Handling:** Formspree integration for serverless form submissions.
+## 기술 스택
+- **Frontend:** HTML5, CSS3, JavaScript (Vanilla JS)
+- **Fonts:** Noto Sans KR, Poppins
+- **Services:** Formspree (문의 폼), Disqus (댓글 시스템)
+- **Deployment:** GitHub
 
-## Recent Changes
-- Added light/dark mode toggle with icon updates.
-- Implemented a partnership inquiry modal with a Formspree-powered contact form.
-- Updated UI with a floating contact toggle button in the bottom-right.
+## 최근 변경 사항
+- UI 전체 한국어 번역 및 친근한 문구로 수정.
+- Disqus 댓글 시스템 통합.
+- 디자인 고도화 (그라데이션 텍스트, 부드러운 레이아웃 등).
