@@ -81,9 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
         questionContainer.innerText = q.q;
         answersContainer.innerHTML = '';
         
-        // 진행바 업데이트
+        // 진행바 및 텍스트 업데이트
         const progress = ((currentQuestion + 1) / questions.length) * 100;
         if (progressBar) progressBar.style.width = `${progress}%`;
+        const progressText = document.getElementById('progress-text');
+        if (progressText) progressText.innerText = `${currentQuestion + 1} / ${questions.length}`;
 
         q.a.forEach(answer => {
             const btn = document.createElement('button');
