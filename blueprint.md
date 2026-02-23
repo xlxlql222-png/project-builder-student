@@ -9,14 +9,16 @@
 - **테마 전환:** 다크 모드와 라이트 모드를 지원합니다.
 - **제휴 문의:** Formspree를 이용한 문의 폼이 모달 형태로 제공됩니다.
 - **커뮤니티 소통:** Disqus를 통합하여 사용자 간의 소통이 가능한 댓글 영역을 제공합니다.
+- **수익화:** Google AdSense를 통합하여 광고 수익 창출이 가능합니다.
 
 ## 기술 스택
 - **Frontend:** HTML5, CSS3, JavaScript (Vanilla JS)
 - **Fonts:** Noto Sans KR, Poppins
-- **Services:** Formspree (문의 폼), Disqus (댓글 시스템)
+- **Services:** Formspree (문의 폼), Disqus (댓글 시스템), Google AdSense (광고)
 - **Deployment:** GitHub
 
 ## 최근 변경 사항
+- Google AdSense 광고 및 ads.txt 추가.
 - 로또 번호 생성기 기능 및 관련 코드 전면 제거.
 - 로맨스 테스트 '시작하기' 버튼 버그 수정 (JS 문법 오류 해결).
 - 네비게이션 바 메뉴 단일화 (로맨스 테스트 전용).
