@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const retryBtn = document.getElementById('retry-btn');
 
     // [중요] 사용자의 Teachable Machine 모델 URL
-    const MODEL_URL = "https://teachablemachine.withgoogle.com/models/xdalpkbz/";
+    const MODEL_URL = "https://teachablemachine.withgoogle.com/models/H46875_G2/";
 
     let model, maxPredictions;
 
@@ -20,11 +20,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const modelURL = MODEL_URL + "model.json";
                 const metadataURL = MODEL_URL + "metadata.json";
+                // tmImage.load(modelURL, metadataURL) can take URLs
                 model = await tmImage.load(modelURL, metadataURL);
                 maxPredictions = model.getTotalClasses();
             } catch (e) {
-                console.error("Model Loading Error:", e);
-                alert("AI 모델 로딩에 실패했습니다. 인터넷 연결을 확인해주세요.");
+                console.error("AI 모델 로딩 에러 상세:", e);
+                loader.innerHTML = `<div class="spinner"></div><p style="color: #ff4b4b;">AI 모델 로딩에 실패했습니다.<br>(${e.message})</p>`;
+                throw e;
             }
         }
     }
@@ -59,17 +61,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Run Prediction
     async function predict() {
-        await loadModel();
-        if (!model) return;
+        try {
+            await loadModel();
+            if (!model) return;
 
-        const prediction = await model.predict(imagePreview);
-        
-        // Hide Loader, Show Results
-        loader.classList.add('hidden');
-        resultContainer.classList.remove('hidden');
-        labelContainer.innerHTML = '';
+            const prediction = await model.predict(imagePreview);
+            
+            // Hide Loader, Show Results
+            loader.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+            labelContainer.innerHTML = '';
+            
+            // ... rest of the logic
+        } catch (e) {
+            console.error("분석 중 에러:", e);
+            loader.classList.add('hidden');
+            alert("이미지 분석 중 오류가 발생했습니다. 다른 사진으로 시도해 주세요.");
+            return;
+        }
 
         // Sort predictions by probability
+        const prediction = await model.predict(imagePreview); 
         prediction.sort((a, b) => b.probability - a.probability);
         
         const topResult = prediction[0].className;
