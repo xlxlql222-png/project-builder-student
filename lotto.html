@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>행운의 로또 번호 추출기 🍀</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="face-test-body">
+    <nav class="top-nav">
+        <a href="index.html" class="nav-link">🐶 멍냥상 테스트</a>
+        <a href="lotto.html" class="nav-link active">🍀 로또 번호 뽑기</a>
+    </nav>
+
+    <main class="container">
+        <h1 class="title">오늘의 행운 번호는? 🍀</h1>
+        <p class="subtitle">버튼을 눌러 당신의 행운을 확인해보세요!</p>
+        <div id="lotto-numbers" class="lotto-numbers"></div>
+        <button id="generate-btn" class="generate-btn">번호 뽑기 ✨</button>
+        
+        <div class="comments-section">
+            <div id="disqus_thread"></div>
+            <script>
+                (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://productbuilder-uvrdbzn2ha.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+        </div>
+    </main>
+
+    <div class="controls">
+        <button id="theme-toggle" class="theme-toggle" aria-label="테마 변경">
+            <svg id="theme-icon" viewBox="0 0 24 24"></svg>
+        </button>
+        <button id="contact-toggle" class="contact-toggle" aria-label="제휴 문의 열기">
+            <span>제휴 문의하기 🤝</span>
+        </button>
+    </div>
+
+    <script src="theme.js"></script>
+    <script src="lotto.js"></script>
+</body>
+</html>
