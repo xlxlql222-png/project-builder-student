@@ -13,9 +13,10 @@
 ## 기술 스택
 - **Frontend:** HTML5, CSS3, JS (Vanilla)
 - **Features:** Auto-Device Detection, Mode Toggle System, High Contrast Design
-- **Services:** AdSense, Formspree, Disqus, Google Analytics (G-DJTQJCZ2KJ)
+- **Services:** AdSense, Formspree, Disqus, Google Analytics (G-DJTQJCZ2KJ), MS Clarity (vmnqiyof3r)
 
 ## 최근 변경 사항
+- MS Clarity 연동을 통한 사용자 유입 및 행동 히트맵 분석 도구 추가.
 - Google Analytics (gtag.js) 연동으로 사용자 행동 데이터 수집 기반 마련.
 - 기기 자동 감지 및 PC/Mobile 모드 전환 시스템 구축.
 - 모바일 전용 앱 스타일 레이아웃 구현.
